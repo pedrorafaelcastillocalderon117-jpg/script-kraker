@@ -527,27 +527,9 @@
  } 
 
  function_verify () { 
-
- permited=$(curl -sSL "https://www.dropbox.com/s/nmau2w8vebewpq3/control") 
-
- [[ $(echo $permited|grep "${IP}") = "" ]] && { 
-
- clear 
-
- echo -e "\n\n\n\033[1;91m————————————————————————————————————————————————————\n      ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR! \n      BOT: @CONECTEDMX_BOT \n————————————————————————————————————————————————————\n\n\n" 
-
- [[ -d /etc/Kraker-VPS ]] && rm -rf /etc/Kraker-VPS 
-
- exit 1 
-
- } || { 
-
- v1=$(curl -sSL "https://raw.githubusercontent.com/lacasitamx/version/master/vercion") 
-
- echo "$v1" > /etc/versin_script 
-
- } 
-
+  echo -e "Verificación deshabilitada para Kraker VPS"
+  v1=$(curl -sSL "https://raw.githubusercontent.com/lacasitamx/version/master/vercion")
+  echo "$v1" > /etc/versin_script 
  } 
 
  funcao_idioma () { 
@@ -578,11 +560,11 @@
 
  msg -ama "               Finalizando Instalacion" && msg bar2 
 
- [[ $(find /etc/VPSMX/controlador -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/VPSMX/controlador/nombre.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/nombre.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/nombre.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/nombre.log &>/dev/null 
 
- [[ $(find /etc/VPSMX/controlador -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/VPSMX/controlador/IDT.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/IDT.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/IDT.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/IDT.log &>/dev/null 
 
- [[ $(find /etc/VPSMX/controlador -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/VPSMX/controlador/tiemlim.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/tiemlim.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/tiemlim.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/tiemlim.log &>/dev/null 
 
  touch /usr/share/lognull &>/dev/null 
 
@@ -878,17 +860,20 @@
 
  exit 1 
 
- }
+ } 
+
+
 msg -bar2
 msg -verd "Descargando e instalando archivos desde GitHub..."
 mkdir -p /etc/Kraker-VPS
 cd /tmp
-wget -qO kraker.zip https://github.com/pedrorafaelcastillocalderon117-jpg/script-kraker/archive/refs/heads/main.zip
+wget -qO kraker.zip https://github.com/pedrorafaelcastillocalderon117-jpg/krakervps-/archive/refs/heads/main.zip
 unzip -qo kraker.zip
-cp -r script-kraker-main/Kraker-VPS/Kraker-VPS/* /etc/Kraker-VPS/ 2>/dev/null || cp -r script-kraker-main/Kraker-VPS/* /etc/Kraker-VPS/
+cp -r krakervps--main/Kraker-VPS/Kraker-VPS/* /etc/Kraker-VPS/ 2>/dev/null || cp -r krakervps--main/Kraker-VPS/* /etc/Kraker-VPS/
 chmod -R +x /etc/Kraker-VPS/
-rm -rf kraker.zip script-kraker-main
+rm -rf kraker.zip krakervps--main
 cd - > /dev/null
+
 
 cat /etc/bash.bashrc|grep -v '[[ 1000 != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2 
 echo -e '[[ 1000 != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2 
@@ -897,7 +882,7 @@ mv -f /etc/bash.bashrc.2 /etc/bash.bashrc
 echo "/etc/Kraker-VPS/menu" > /usr/bin/menu && chmod +x /usr/bin/menu
 echo "/etc/Kraker-VPS/menu" > /usr/bin/kraker && chmod +x /usr/bin/kraker
 
-[[ ${#id} -gt 2 ]] && echo "es" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
+ [[ ${#id} -gt 2 ]] && echo "es" > ${SCPidioma} || echo "${id}" > ${SCPidioma} 
 
  echo -e "${cor[2]}         DESEAS INSTALAR NOTI-BOT?(Default n)" 
 
@@ -912,5 +897,6 @@ echo "/etc/Kraker-VPS/menu" > /usr/bin/kraker && chmod +x /usr/bin/kraker
  msg -bar2 
 
  [[ ${byinst} = "true" ]] && install_fim 
+
 
  rm -rf Kraker VPS.sh lista-arq
