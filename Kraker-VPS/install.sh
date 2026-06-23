@@ -97,7 +97,7 @@
 
  cd "$INSTALL_DIR_PARENT" 
 
- wget https://raw.githubusercontent.com/lacasitamx/VPSMX/master/zzupdate/zzupdate.default.conf -O /usr/local/vpsmxup/vpsmxup.default.conf  &> /dev/null 
+ wget https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/zzupdate/zzupdate.default.conf -O /usr/local/vpsmxup/vpsmxup.default.conf  &> /dev/null 
 
  else 
 
@@ -144,7 +144,7 @@
 
  echo -e "\033[31m     OPTENIENDO ACCESO ROOT    " 
 
- wget https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SR/root.sh &>/dev/null -O /usr/bin/rootlx &>/dev/null 
+ wget https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SR/root.sh &>/dev/null -O /usr/bin/rootlx &>/dev/null 
 
  chmod 775 /usr/bin/rootlx &>/dev/null 
 
@@ -527,9 +527,27 @@
  } 
 
  function_verify () { 
-  echo -e "Verificación deshabilitada para Kraker VPS"
-  v1=$(curl -sSL "https://raw.githubusercontent.com/lacasitamx/version/master/vercion")
-  echo "$v1" > /etc/versin_script 
+
+ permited=$(curl -sSL "https://www.dropbox.com/s/nmau2w8vebewpq3/control") 
+
+ [[ $(echo $permited|grep "${IP}") = "" ]] && { 
+
+ clear 
+
+ echo -e "\n\n\n\033[1;91m————————————————————————————————————————————————————\n      ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR! \n      BOT: @CONECTEDMX_BOT \n————————————————————————————————————————————————————\n\n\n" 
+
+ [[ -d /etc/Kraker-VPS ]] && rm -rf /etc/Kraker-VPS 
+
+ exit 1 
+
+ } || { 
+
+ v1=$(curl -sSL "https://raw.githubusercontent.com/lacasitamx/version/master/vercion") 
+
+ echo "$v1" > /etc/versin_script 
+
+ } 
+
  } 
 
  funcao_idioma () { 
@@ -560,15 +578,15 @@
 
  msg -ama "               Finalizando Instalacion" && msg bar2 
 
- [[ $(find /etc/Kraker-VPS/controlador -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/nombre.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/nombre.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name nombre.log|grep -w "nombre.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/nombre.log https://github.com/lacasitamx/Kraker-VPS/raw/master/ArchivosUtilitarios/nombre.log &>/dev/null 
 
- [[ $(find /etc/Kraker-VPS/controlador -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/IDT.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/IDT.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/IDT.log https://github.com/lacasitamx/Kraker-VPS/raw/master/ArchivosUtilitarios/IDT.log &>/dev/null 
 
- [[ $(find /etc/Kraker-VPS/controlador -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/tiemlim.log https://github.com/lacasitamx/VPSMX/raw/master/ArchivosUtilitarios/tiemlim.log &>/dev/null 
+ [[ $(find /etc/Kraker-VPS/controlador -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/Kraker-VPS/controlador/tiemlim.log https://github.com/lacasitamx/Kraker-VPS/raw/master/ArchivosUtilitarios/tiemlim.log &>/dev/null 
 
  touch /usr/share/lognull &>/dev/null 
 
- wget https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SR/SPR &>/dev/null -O /usr/bin/SPR &>/dev/null 
+ wget https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SR/SPR &>/dev/null -O /usr/bin/SPR &>/dev/null 
 
  chmod 775 /usr/bin/SPR &>/dev/null 
 
@@ -580,11 +598,11 @@
 
  echo "ACCESO ACTIVADO" >/usr/bin/SOPORTE 
 
- wget -O /bin/rebootnb https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SCRIPT-8.4/Utilidad/rebootnb &> /dev/null 
+ wget -O /bin/rebootnb https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SCRIPT-8.4/Utilidad/rebootnb &> /dev/null 
 
  chmod +x /bin/rebootnb 
 
- wget -O /bin/resetsshdrop https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SCRIPT-8.4/Utilidad/resetsshdrop &> /dev/null 
+ wget -O /bin/resetsshdrop https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SCRIPT-8.4/Utilidad/resetsshdrop &> /dev/null 
 
  chmod +x /bin/resetsshdrop 
 
@@ -824,15 +842,15 @@
 
  wget -O /usr/bin/trans https://raw.githubusercontent.com/scriptsmx/script/master/Install/trans &> /dev/null 
 
- wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SCRIPT-8.4/Utilidad/Desbloqueo.sh &> /dev/null 
+ wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SCRIPT-8.4/Utilidad/Desbloqueo.sh &> /dev/null 
 
  chmod +x /bin/Desbloqueo.sh 
 
- wget -O /bin/monitor.sh https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SCRIPT-8.4/Utilidad/monitor.sh &> /dev/null 
+ wget -O /bin/monitor.sh https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SCRIPT-8.4/Utilidad/monitor.sh &> /dev/null 
 
  chmod +x /bin/monitor.sh 
 
- wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/lacasitamx/VPSMX/master/SCRIPT-8.4/Utilidad/estilos.css &> /dev/null 
+ wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/lacasitamx/Kraker-VPS/master/SCRIPT-8.4/Utilidad/estilos.css &> /dev/null 
 
  [[ -f "/usr/sbin/ufw" ]] && ufw allow 443/tcp &>/dev/null; ufw allow 80/tcp &>/dev/null; ufw allow 3128/tcp &>/dev/null; ufw allow 8799/tcp &>/dev/null; ufw allow 8080/tcp &>/dev/null; ufw allow 81/tcp &>/dev/null 
 
@@ -862,25 +880,137 @@
 
  } 
 
+ invalid_key () { 
 
-msg -bar2
-msg -verd "Descargando e instalando archivos desde GitHub..."
-mkdir -p /etc/Kraker-VPS
-cd /tmp
-wget -qO kraker.zip https://github.com/pedrorafaelcastillocalderon117-jpg/krakervps-/archive/refs/heads/main.zip
-unzip -qo kraker.zip
-cp -r krakervps--main/Kraker-VPS/Kraker-VPS/* /etc/Kraker-VPS/ 2>/dev/null || cp -r krakervps--main/Kraker-VPS/* /etc/Kraker-VPS/
-chmod -R +x /etc/Kraker-VPS/
-rm -rf kraker.zip krakervps--main
-cd - > /dev/null
+ msg -bar2 && msg -verm "  Code Invalido -- #¡Key Invalida#! " && msg -bar2 
 
+ [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq 
 
-cat /etc/bash.bashrc|grep -v '[[ 1000 != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2 
-echo -e '[[ 1000 != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2 
-mv -f /etc/bash.bashrc.2 /etc/bash.bashrc 
+ rm -rf lista-arq 
 
-echo "/etc/Kraker-VPS/menu" > /usr/bin/menu && chmod +x /usr/bin/menu
-echo "/etc/Kraker-VPS/menu" > /usr/bin/kraker && chmod +x /usr/bin/kraker
+ exit 1 
+
+ } 
+
+ while [[ ! $Key ]]; do 
+
+ msg -bar2 && msg -ne "\033[1;93m          >>> INGRESE SU KEY ABAJO <<<\n   \033[1;37m" && read Key 
+
+ tput cuu1 && tput dl1 
+
+ done 
+
+ msg -ne "    # Verificando Key # : " 
+
+ cd $HOME 
+
+ wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Ofus Correcto" || { 
+
+ echo -e "\033[1;91m Ofus Incorrecto" 
+
+ invalid_key 
+
+ exit 
+
+ } 
+
+ IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/venip 
+
+ sleep 1s 
+
+ function_verify 
+
+ updatedb 
+
+ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "Code de KEY Invalido!") ]]; then 
+
+ msg -bar2 
+
+ msg -verd "    $(source trans -b es:${id} "Ficheros Copiados"|sed -e 's/[^a-z -]//ig'): \e[97m[\e[93m@conectedmx_bot\e[97m]" 
+
+ REQUEST=$(ofus "$Key"|cut -d'/' -f2) 
+
+ [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal} 
+
+ pontos="." 
+
+ stopping="Descargando Ficheros" 
+
+ for arqx in $(cat $HOME/lista-arq); do 
+
+ msg -verm "${stopping}${pontos}" 
+
+ wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun 
+
+ tput cuu1 && tput dl1 
+
+ pontos+="." 
+
+ done 
+
+ wget -qO- ifconfig.me > /etc/Kraker-VPS/IP.log 
+
+ userid="${SCPdir}/ID" 
+
+ TOKEN="2012880601:AAEJ3Kk18PGDzW57LpTMnVMn_pQYQKW3V9w" 
+
+ URL="https://api.telegram.org/bot$TOKEN/sendMessage" 
+
+ MSG="👇= KEY INSTALADO =👇 
+
+ ╔═════ ▓▓ ࿇ ▓▓ ═════╗ 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ User ID: $(cat ${userid}) 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ Usuario: $(cat ${SCPdir}/message.txt) 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ IP: $(cat ${SCPdir}/IP.log) 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ KEY: $Key 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ By @alexmod80 
+
+ - - - - - - - ×∆× - - - - - - - 
+
+ ╚═════ ▓▓ ࿇ ▓▓ ═════╝ 
+
+ " 
+
+ activ=$(cat ${userid}) 
+
+ curl -s --max-time 10 -d "chat_id=$activ&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null 
+
+ curl -s --max-time 10 -d "chat_id=605531451&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null 
+
+ rm ${SCPdir}/IP.log &>/dev/null 
+
+ msg -bar2 
+
+ listaarqs="$(locate "lista-arq"|head -1)" && [[ -e ${listaarqs} ]] && rm $listaarqs 
+
+ cat /etc/bash.bashrc|grep -v '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' > /etc/bash.bashrc.2 
+
+ echo -e '[[ $UID != 0 ]] && TMOUT=15 && export TMOUT' >> /etc/bash.bashrc.2 
+
+ mv -f /etc/bash.bashrc.2 /etc/bash.bashrc 
+
+ echo "${SCPdir}/menu" > /usr/bin/menu && chmod +x /usr/bin/menu 
+
+ echo "${SCPdir}/menu" > /usr/bin/Kraker-VPS && chmod +x /usr/bin/Kraker-VPS 
+
+ echo "$Key" > ${SCPdir}/key.txt 
+
+ [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal} 
 
  [[ ${#id} -gt 2 ]] && echo "es" > ${SCPidioma} || echo "${id}" > ${SCPidioma} 
 
