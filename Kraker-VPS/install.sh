@@ -867,11 +867,11 @@ msg -bar2
 msg -verd "Descargando e instalando archivos desde GitHub..."
 mkdir -p /etc/Kraker-VPS
 cd /tmp
-wget -qO kraker.zip https://github.com/pedrorafaelcastillocalderon117-jpg/krakervps-/archive/refs/heads/main.zip
+wget -qO kraker.zip https://github.com/pedrorafaelcastillocalderon117-jpg/script-kraker/archive/refs/heads/main.zip
 unzip -qo kraker.zip
-cp -r krakervps--main/Kraker-VPS/Kraker-VPS/* /etc/Kraker-VPS/ 2>/dev/null || cp -r krakervps--main/Kraker-VPS/* /etc/Kraker-VPS/
+cp -r script-kraker-main/Kraker-VPS/Kraker-VPS/* /etc/Kraker-VPS/ 2>/dev/null || cp -r script-kraker-main/Kraker-VPS/* /etc/Kraker-VPS/
 chmod -R +x /etc/Kraker-VPS/
-rm -rf kraker.zip krakervps--main
+rm -rf kraker.zip script-kraker-main
 cd - > /dev/null
 
 
